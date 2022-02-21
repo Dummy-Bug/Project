@@ -48,7 +48,7 @@ from io import BytesIO
 
 def load_data(nrows):
   
-  data = pd.read_csv(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\preprocessed_news_for_app.csv')
+  data = pd.read_csv('preprocessed_news_for_app.csv')
   
   data.drop_duplicates()
   data = data.dropna(inplace = False).reset_index()
