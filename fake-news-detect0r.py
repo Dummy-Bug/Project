@@ -27,14 +27,28 @@ st.text("This Web App detects the Fake News, You just have to enter manually ")
 st.text("or paste the News Artcile and this app will predict  if the News is ")
 st.text("is Fake or not")
 
-from PIL import Image
-image = Image.open(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\Fake News Classifier\fake_news_image.png')
+# from PIL import Image
+# image = Image.open(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\Fake News Classifier\fake_news_image.png')
 
-st.image(image, width = 550) # changing dimensions of the Image to our requirements.
+  
+from PIL import Image
+import requests
+from io import BytesIO
+
+# url = 'https://github.com/Dummy-Bug/Project/blob/master/fake_news_image.png'
+
+# response = requests.get(url)
+# img = Image.open(BytesIO(response.content))
+
+
+# img.show()
+
+
+# st.image(img, width = 550) # changing dimensions of the Image to our requirements.
 
 def load_data(nrows):
   
-  data = pd.read_csv(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\Fake News Classifier\preprocessed_news_for_app.csv')
+  data = pd.read_csv(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\preprocessed_news_for_app.csv')
   
   data.drop_duplicates()
   data = data.dropna(inplace = False).reset_index()
@@ -102,10 +116,11 @@ def clean_text(sentence):
 
 def predict(user_input):# it will run this function and it will return either prediction
       
-    clf = joblib.load(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\Fake News Classifier\model.pkl')
-    vectorizer = joblib.load(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\project\Fake News Classifier\count_vect.pkl')
+    clf = joblib.load(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\model.pkl')
     
-    pickle_off = open(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\Fake News Classifier\standard_scaler.pkl',"rb")
+    vectorizer = joblib.load(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\project\count_vect.pkl')
+    
+    pickle_off = open(r'C:\Users\LAXIT RANA\Desktop\Git\Case Studies\Project\standard_scaler.pkl',"rb")
     standard_scaler = pickle.load(pickle_off)
     
     news_text   = clean_text(user_input) # cleaning the query point 
