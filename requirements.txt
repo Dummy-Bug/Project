@@ -1,0 +1,8 @@
+beautifulsoup4
+ez-setup
+lxml
+matplotlib
+pip-chill
+psycopg2-binary
+scikit-learn
+streamlit
